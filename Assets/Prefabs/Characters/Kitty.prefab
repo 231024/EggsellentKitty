@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7792385999653976272, guid: 9b60e87af21bda041b807e1ab96a4178, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7792385999653976272, guid: 9b60e87af21bda041b807e1ab96a4178, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.95
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: 7792385999653976272, guid: 9b60e87af21bda041b807e1ab96a4178, type: 3}
       propertyPath: m_LocalPosition.z
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kittyBody: {fileID: 618280534665311078}
   input: {fileID: 9069756813716712346}
-  speed: 4
+  config: {fileID: 11400000, guid: 22ef88765423a4c11a41019d6ff7c760, type: 2}
 --- !u!95 &5803160752625245599 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6066064050784408560, guid: 9b60e87af21bda041b807e1ab96a4178, type: 3}
