@@ -1,62 +1,41 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BirdSpawnController : MonoBehaviour
+public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdBaseBehaviour
 {
 	[SerializeField] private GameObject[] birds;
 	[SerializeField] private GameObject[] spawnPoints;
-	[SerializeField] private GameObject[] spawnPointsFlying;
-	[SerializeField] private GameConfig config;
+	[SerializeField] protected GameConfig config;
 
-	private int _birdsCount;
+	protected abstract int BirdsCount { get; }
 
 	private void Start()
 	{
-		_birdsCount = birds?.Length ?? 0;
-
-		SpawnStaticBirds();
-		SpawnFlyingBirds();
+		SpawnBirds();
 	}
 
-	private void SpawnStaticBirds()
+	private void SpawnBirds()
 	{
-		var spawnPointsCount = spawnPoints?.Length ?? 0;
-
 		if (birds == null || spawnPoints == null)
 			return;
 
-		for (var i = 0; i < spawnPointsCount; i++)
+		for (var i = 0; i < BirdsCount; i++)
 		{
-			var bird = SpawnRandomBird(spawnPoints[i].transform.position);
-			var birdBehaviour = bird.GetComponent<BirdBehaviour>();
-			birdBehaviour.InitStatic();
-		}
-	}
-
-	private void SpawnFlyingBirds()
-	{
-		if (spawnPointsFlying == null)
-			return;
-		
-		for (var i = 0; i < config.flyingBirdsCount; i++)
-		{
-			var position = spawnPointsFlying[Random.Range(0, spawnPointsFlying.Length)];
-			var bird = SpawnRandomBird(position.transform.position);
-			var birdBehaviour = bird.GetComponent<BirdBehaviour>();
-			if (birdBehaviour == null)
-				continue;
-
-			var spawnPoint = position.GetComponent<FlyingSpawnPoint>();
-			birdBehaviour.InitFlying(config.RandomFlyingDelay, config.birdSpeed, spawnPoint.Direction);
+			var spawnPoint = spawnPoints[i];
+			var bird = SpawnRandomBird(spawnPoint.transform.position);
+			var birdBehaviour = bird.GetComponent<T>();
+			InitBird(birdBehaviour, spawnPoint);
 		}
 	}
 
 	private GameObject SpawnRandomBird(Vector3 position)
 	{
-		var bird = Instantiate(birds[Random.Range(0, _birdsCount)]);
+		var bird = Instantiate(birds[Random.Range(0, BirdsCount)]);
 		bird.transform.position = position;
 		bird.gameObject.SetActive(true);
 
 		return bird;
 	}
+
+	protected abstract void InitBird(T bird, GameObject spawnPoint);
 }

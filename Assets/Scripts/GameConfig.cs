@@ -10,10 +10,11 @@ public class GameConfig : ScriptableObject
 	public float kittySpeed;
 
 	[Header("Birds Config")]
+	public int staticBirdsCount;
 	public int flyingBirdsCount;
 	public int flyingPeriodMin;
 	public int flyingPeriodMax;
-	public int birdSpeed;
+	public float birdSpeed;
 
 	public int RandomFlyingDelay => Random.Range(flyingPeriodMin, flyingPeriodMax);
 }

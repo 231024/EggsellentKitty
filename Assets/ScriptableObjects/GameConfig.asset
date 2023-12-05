@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   kittySpeed: 4
+  staticBirdsCount: 3
   flyingBirdsCount: 2
-  flyingPeriodMin: 20
-  flyingPeriodMax: 100
-  birdSpeed: 2
+  flyingPeriodMin: 2
+  flyingPeriodMax: 10
+  birdSpeed: 0.004
