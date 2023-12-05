@@ -34,6 +34,7 @@ public class BirdFlyingBehaviour : BirdBaseBehaviour
 		if (!other.gameObject.GetComponent<FlyingSpawnPoint>())
 			return;
 
+		Debug.LogError("[TMP] stop flying, change direction");
 		_isFlying = false;
 		_direction *= -1;
 		Invoke(nameof(StartFly), _flightDelay);

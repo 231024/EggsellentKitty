@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6252860086328067530, guid: c543bb1c7f29b42ca9e31e371d89b644, type: 3}
       propertyPath: m_Name
-      value: OwlBaseStatic
+      value: OwlStatic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.0425725}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -141,7 +141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.05, y: 14.02}
+  m_Size: {x: 13.05, y: 11.934855}
   m_EdgeRadius: 0
 --- !u!114 &-8613676384351551440
 MonoBehaviour:
