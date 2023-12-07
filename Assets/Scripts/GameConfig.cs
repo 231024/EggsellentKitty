@@ -15,6 +15,10 @@ public class GameConfig : ScriptableObject
 	public int flyingPeriodMin;
 	public int flyingPeriodMax;
 	public float birdSpeed;
+	public int flightDurationMin;
+	public int flightDurationMax;
 
 	public int RandomFlyingDelay => Random.Range(flyingPeriodMin, flyingPeriodMax);
+
+	public int RandomFlightDuration => Random.Range(flightDurationMin, flightDurationMax);
 }

@@ -7,19 +7,31 @@ public class BirdFlyingBehaviour : BirdBaseBehaviour
 	private float _flightSpeed;
 	private int _direction;
 	private bool _isFlying;
+	private int _flightDuration;
 
 	private void Start() => _transform = GetComponent<Transform>();
 
-	public void Init(int delay, float speed, int direction)
+	public void Init(int delay, float speed, int direction, int duration)
 	{
 		_flightDelay = delay;
 		_flightSpeed = speed;
 		_direction = direction;
+		_flightDuration = duration;
 
 		Invoke(nameof(StartFly), _flightDelay);
 	}
 
-	private void StartFly() => _isFlying = true;
+	private void StartFly() 
+	{
+		_isFlying = true;
+		Invoke(nameof(ChangeDirection), _flightDuration);
+	}
+
+	private void ChangeDirection()
+	{
+		_direction *= -1;
+		Invoke(nameof(ChangeDirection), _flightDuration);
+	}
 
 	private void Update()
 	{
@@ -27,16 +39,5 @@ public class BirdFlyingBehaviour : BirdBaseBehaviour
 			return;
 
 		_transform.position += new Vector3(_flightSpeed * _direction, 0);
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (!other.gameObject.GetComponent<FlyingSpawnPoint>())
-			return;
-
-		Debug.LogError("[TMP] stop flying, change direction");
-		_isFlying = false;
-		_direction *= -1;
-		Invoke(nameof(StartFly), _flightDelay);
 	}
 }

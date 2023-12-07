@@ -18,3 +18,5 @@ MonoBehaviour:
   flyingPeriodMin: 2
   flyingPeriodMax: 10
   birdSpeed: 0.004
+  flightDurationMin: 10
+  flightDurationMax: 20

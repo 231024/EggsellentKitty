@@ -7,6 +7,6 @@ public class BirdSpawnFlyingController : BirdSpawnBaseController<BirdFlyingBehav
 	protected override void InitBird(BirdFlyingBehaviour bird, GameObject spawnPoint)
 	{
 		var direction = spawnPoint.GetComponent<FlyingSpawnPoint>().Direction;
-		bird.Init(config.RandomFlyingDelay, config.birdSpeed, direction);
+		bird.Init(config.RandomFlyingDelay, config.birdSpeed, direction, config.RandomFlightDuration);
 	}
 }

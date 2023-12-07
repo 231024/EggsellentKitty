@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5307903972874766012, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
       propertyPath: m_Name
-      value: EagleBaseFlying
+      value: EagleFlying
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62,6 +62,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5307903972874766012, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3368172536088090556}
+    - targetCorrespondingSourceObject: {fileID: 5307903972874766012, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4293393980623809405}
   m_SourcePrefab: {fileID: 100100000, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
 --- !u!1 &3282325160071222946 stripped
 GameObject:
@@ -125,3 +128,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.34, y: 13.97}
   m_EdgeRadius: 0
+--- !u!95 &4293393980623809405
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282325160071222946}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c3b00eb1de6946dbb70b4d3f7cc2c4e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
