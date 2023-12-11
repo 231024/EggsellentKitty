@@ -20,3 +20,20 @@ MonoBehaviour:
   birdSpeed: 0.004
   flightDurationMin: 10
   flightDurationMax: 20
+  eggPoints: 1
+  superEggPoints: 10
+  dropLifetime: 5
+  dropDelay: 10
+  probabilities:
+  - Type: 0
+    Probability: 100
+  - Type: 1
+    Probability: 10
+  - Type: 2
+    Probability: 50
+  - Type: 3
+    Probability: 10
+  - Type: 4
+    Probability: 10
+  scoreToWin: 120
+  livesCount: 3

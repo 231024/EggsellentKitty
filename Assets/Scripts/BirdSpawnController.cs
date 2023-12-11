@@ -7,6 +7,7 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	[SerializeField] private GameObject[] birds;
 	[SerializeField] private GameObject[] spawnPoints;
 	[SerializeField] protected GameConfig config;
+	[SerializeField] protected DropController dropController;
 
 	protected abstract int BirdsCount { get; }
 	private int _maxIndex;
@@ -41,5 +42,8 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 		return bird;
 	}
 
-	protected abstract void InitBird(T bird, GameObject spawnPoint);
+	protected virtual void InitBird(T bird, GameObject spawnPoint)
+	{
+		dropController.Register(bird.gameObject);
+	}
 }
