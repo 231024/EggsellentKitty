@@ -9,8 +9,21 @@ public class KittyPhysicsController : MonoBehaviour
 
 	public int Direction => Math.Sign(input.HorizontalAxisValue);
 
+	public event Action<DropType> OnCollect;
+
 	private void FixedUpdate()
 	{
 		kittyBody.velocity = new Vector2(input.HorizontalAxisValue * config.kittySpeed, kittyBody.velocity.y);
+	}
+	
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		var dropItem = other.gameObject.GetComponent<DropItem>();
+		if (dropItem == null)
+			return;
+
+		Debug.Log($"Kitty's collected item {dropItem.Type}");
+		OnCollect?.Invoke(dropItem.Type);
+		Destroy(dropItem.gameObject);
 	}
 }
