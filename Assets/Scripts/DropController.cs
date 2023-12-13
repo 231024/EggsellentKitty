@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class DropController : MonoBehaviour
 {
+	[SerializeField] private GameController gameController;
 	[SerializeField] private GameConfig config;
 	[SerializeField] private DropItemConfig dropItems;
 
@@ -15,6 +16,7 @@ public class DropController : MonoBehaviour
 	private void OnDisable() => CancelInvoke();
 
 	public void Register(GameObject dropSource) => _dropSources.Add(dropSource);
+
 	private void ScheduleDrop()
 	{
 		_sourceIndex = Random.Range(0, _dropSources.Count);
@@ -23,6 +25,9 @@ public class DropController : MonoBehaviour
 
 	private void Drop()
 	{
+		//if (!gameController.InProgress)
+			//return;
+
 		var dropType = config.RandomizeDrop();
 		var drop = dropItems.GetDropByType(dropType);
 

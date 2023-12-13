@@ -23,10 +23,10 @@ public class InfoPanel : MonoBehaviour
 		}
 
 		RefreshScore();
-		gameController.OnChanged += Refresh;
+		gameController.OnKityStateChanged += Refresh;
 	}
 
-	private void OnDestroy() => gameController.OnChanged -= Refresh;
+	private void OnDestroy() => gameController.OnKityStateChanged -= Refresh;
 
 	private void Refresh()
 	{
@@ -40,7 +40,12 @@ public class InfoPanel : MonoBehaviour
 		superEggs.SetValue(gameController.TotalSuperEggs);
 		score.SetScore(gameController.Score);
 	}
-	
+
 	private void RefreshLives()
-	{}
+	{
+		var current = gameController.CurrentLives;
+
+		for (int i = 0, length = _lives.Count; i < length; i++)
+			_lives[i].SetState(i < current);
+	}
 }

@@ -9,7 +9,7 @@ public class LifeItem : MonoBehaviour
 	[SerializeField] private Sprite empty;
 
 	private const float FullAlpha = 1f;
-	private const float EmptyAlpha = 0.5f;
+	private const float EmptyAlpha = 0.3f;
 
 	public void SetState(bool isFull)
 	{
