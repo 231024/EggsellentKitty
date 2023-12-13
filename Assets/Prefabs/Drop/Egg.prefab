@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6143630380082437535}
   - component: {fileID: 2535462313520632135}
   - component: {fileID: 4597430820432679000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

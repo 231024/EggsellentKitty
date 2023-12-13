@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6843589278901672264}
   - component: {fileID: 6563783430790575575}
   - component: {fileID: 4619788274756325351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SuperEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

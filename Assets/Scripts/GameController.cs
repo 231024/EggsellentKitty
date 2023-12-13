@@ -30,6 +30,9 @@ public class GameController : MonoBehaviour
 		get => _gameState;
 		private set
 		{
+			if (_gameState == value)
+				return;
+
 			_gameState = value;
 			OnGameStateChanged?.Invoke();
 		}
@@ -55,8 +58,9 @@ public class GameController : MonoBehaviour
 		TotalSuperEggs = 0;
 
 		kitty.OnCollect += OnDropCollected;
-		
 	}
+
+	public void StartGame() => GameState = State.InProgress;
 
 	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;
 

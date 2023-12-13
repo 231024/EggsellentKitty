@@ -11,22 +11,33 @@ public class DropController : MonoBehaviour
 	private readonly List<GameObject> _dropSources = new();
 	private int _sourceIndex;
 
-	private void Awake() => ScheduleDrop();
+	private void Awake()
+	{
+		gameController.OnGameStateChanged += ScheduleDrop;
+		ScheduleDrop();
+	}
 
-	private void OnDisable() => CancelInvoke();
+	private void OnDestroy()
+	{
+		CancelInvoke();
+		gameController.OnGameStateChanged -= ScheduleDrop;
+	}
 
 	public void Register(GameObject dropSource) => _dropSources.Add(dropSource);
 
 	private void ScheduleDrop()
 	{
+		if (!gameController.InProgress)
+			return;
+
 		_sourceIndex = Random.Range(0, _dropSources.Count);
 		Invoke(nameof(Drop), config.dropDelay);
 	}
 
 	private void Drop()
 	{
-		//if (!gameController.InProgress)
-			//return;
+		if (!gameController.InProgress)
+			return;
 
 		var dropType = config.RandomizeDrop();
 		var drop = dropItems.GetDropByType(dropType);

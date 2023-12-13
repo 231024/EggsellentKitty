@@ -8,13 +8,26 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	[SerializeField] private GameObject[] spawnPoints;
 	[SerializeField] protected GameConfig config;
 	[SerializeField] protected DropController dropController;
+	[SerializeField] private GameController gameController;
 
 	protected abstract int BirdsCount { get; }
 	private int _maxIndex;
 
 	private void Start()
 	{
-		SpawnBirds();
+		gameController.OnGameStateChanged += OnGameStateChanged;
+		OnGameStateChanged();
+	}
+
+	private void OnDestroy()
+	{
+		gameController.OnGameStateChanged -= OnGameStateChanged;
+	}
+
+	private void OnGameStateChanged()
+	{
+		if (gameController.InProgress)
+			SpawnBirds();
 	}
 
 	private void SpawnBirds()

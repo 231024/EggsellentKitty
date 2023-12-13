@@ -24,8 +24,5 @@ public class MenuPanel : MonoBehaviour
 		scoreToWin.text = string.Format(ScoreToWinRuleText, config.scoreToWin);
 	}
 
-	public void StartGame()
-	{
-		// todo start game here
-	}
+	public void StartGame() => gameController.StartGame();
 }
