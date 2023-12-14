@@ -46,9 +46,12 @@ public class DropController : MonoBehaviour
 		{
 			var dropItem = Instantiate(drop).GetComponent<DropItem>();
 			dropItem.transform.position = _dropSources[_sourceIndex].transform.position;
-			dropItem.Init(dropType, config.dropLifetime);
+			dropItem.Init(dropType, GetDropLifetime(dropType));
 		}
 
 		ScheduleDrop();
 	}
+
+	private float GetDropLifetime(DropType dropType) =>
+		dropType == DropType.Shit ? config.badDropLifetime : config.goodDropLifetime;
 }

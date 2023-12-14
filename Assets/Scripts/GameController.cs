@@ -104,13 +104,14 @@ public class GameController : MonoBehaviour
 	private void CollectShit()
 	{
 		if (CurrentLives <= 0)
-		{
-			GameState = State.Finished;
-			Result = false;
 			return;
-		}
 
 		CurrentLives--;
+		if (CurrentLives == 0)
+		{
+			Result = false;
+			GameState = State.Finished;
+		}
 	}
 
 	private void CollectExtraLife()
@@ -126,8 +127,8 @@ public class GameController : MonoBehaviour
 		if (Score < config.scoreToWin)
 			return;
 
-		GameState = State.Finished;
 		Result = true;
+		GameState = State.Finished;
 	}
 
 	private bool HasFullLives => CurrentLives >= config.livesCount;

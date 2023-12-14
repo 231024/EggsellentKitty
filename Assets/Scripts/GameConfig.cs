@@ -21,7 +21,8 @@ public class GameConfig : ScriptableObject
 	[Header("Drop Config")]
 	public int eggPoints;
 	public int superEggPoints;
-	public int dropLifetime;
+	public int badDropLifetime;
+	public int goodDropLifetime;
 	public int dropDelay;
 	public DropProbability[] probabilities;
 
@@ -33,10 +34,22 @@ public class GameConfig : ScriptableObject
 
 	public int RandomFlightDuration => Random.Range(flightDurationMin, flightDurationMax);
 
-	// todo implement
 	public DropType RandomizeDrop()
 	{
-		return (DropType)Random.Range(1, 5);
+		var totalWeight = 0;
+
+		foreach (var probability in probabilities)
+			totalWeight += probability.Probability;
+
+		var random = Random.Range(0, totalWeight);
+
+		foreach (var probability in probabilities)
+		{
+			if ((random -= probability.Probability) < 0)
+				return probability.Type;
+		}
+
+		return DropType.None;
 	}
 
 	[Serializable]
