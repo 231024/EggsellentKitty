@@ -606,6 +606,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5593132099535248069, guid: 04fb8ce8852f5449c97c1e1840b3907b, type: 3}
   m_PrefabInstance: {fileID: 6686445538964117644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &615489626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4971637904437466612, guid: 04fb8ce8852f5449c97c1e1840b3907b, type: 3}
+  m_PrefabInstance: {fileID: 6686445538964117644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2cc13e3db784ada8971b6fa6fefcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &622255695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,8 +1532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 1153666313}
+  kittyController: {fileID: 1241311602}
   menu: {fileID: 7853585551300935634}
-  menuController: {fileID: 1960316430}
+  infoPanelView: {fileID: 615489626}
   panel: {fileID: 615489625}
   gameResult: {fileID: 245323089}
 --- !u!1 &1153666312
@@ -3132,6 +3144,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1924373354}
     m_Modifications:
+    - target: {fileID: 370660128891635201, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
+      propertyPath: m_Color.a
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 629973957099621036, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
+      propertyPath: m_Color.a
+      value: 0.98039216
+      objectReference: {fileID: 0}
     - target: {fileID: 1494817075626892201, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

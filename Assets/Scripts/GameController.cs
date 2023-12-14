@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
 	public bool InProgress => GameState == State.InProgress;
 
 	public event Action OnGameStateChanged;
-	public event Action OnKityStateChanged;
+	public event Action OnKittyStateChanged;
 
 	private int _score;
 	private State _gameState;
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
 
 	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;
 
-	private void OnDropCollected(DropType dropType)
+	private void OnDropCollected(DropType dropType, GameObject collected)
 	{
 		if (!InProgress)
 			return;
@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
 			default: return;
 		}
 
-		OnKityStateChanged?.Invoke();
+		OnKittyStateChanged?.Invoke();
 	}
 
 	private void CollectEgg()

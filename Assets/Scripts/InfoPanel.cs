@@ -22,26 +22,35 @@ public class InfoPanel : MonoBehaviour
 			_lives.Add(life);
 		}
 
-		RefreshScore();
-		gameController.OnKityStateChanged += Refresh;
+		RefreshStats();
 	}
 
-	private void OnDestroy() => gameController.OnKityStateChanged -= Refresh;
+	public Transform GetEggsTransform => eggs.transform;
 
-	private void Refresh()
+	public Transform GetSuperEggTransform => superEggs.transform;
+
+	public Transform GetScoreTransform => score.transform;
+
+	public Transform GetLiveToRestore => gameController.CurrentLives <= _lives.Count
+		? _lives[gameController.CurrentLives - 1].transform
+		: null;
+
+	public Transform GetLiveToDestroy => gameController.CurrentLives >= 0
+		? _lives[gameController.CurrentLives].transform
+		: null;
+
+	private void RefreshStats()
 	{
-		RefreshScore();
-		RefreshLives();
+		RefreshEggs();
+		RefreshSuperEggs();
+		SetScore();
 	}
 
-	private void RefreshScore()
-	{
-		eggs.SetValue(gameController.TotalEggs);
-		superEggs.SetValue(gameController.TotalSuperEggs);
-		score.SetScore(gameController.Score);
-	}
+	public void RefreshEggs() => eggs.SetValue(gameController.TotalEggs);
+	public void RefreshSuperEggs() => superEggs.SetValue(gameController.TotalSuperEggs);
+	public void SetScore() => score.SetScore(gameController.Score);
 
-	private void RefreshLives()
+	public void RefreshLives()
 	{
 		var current = gameController.CurrentLives;
 

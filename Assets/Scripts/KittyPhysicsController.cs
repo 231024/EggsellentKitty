@@ -9,7 +9,7 @@ public class KittyPhysicsController : MonoBehaviour
 
 	public int Direction => Math.Sign(input.HorizontalAxisValue);
 
-	public event Action<DropType> OnCollect;
+	public event Action<DropType, GameObject> OnCollect;
 
 	private void FixedUpdate()
 	{
@@ -23,7 +23,7 @@ public class KittyPhysicsController : MonoBehaviour
 			return;
 
 		Debug.Log($"Kitty's collected item {dropItem.Type}");
-		OnCollect?.Invoke(dropItem.Type);
-		Destroy(dropItem.gameObject);
+		dropItem.Collect();
+		OnCollect?.Invoke(dropItem.Type, other.gameObject);
 	}
 }
