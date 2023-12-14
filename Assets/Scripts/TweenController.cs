@@ -14,6 +14,7 @@ public class TweenController : MonoBehaviour
 	private const float MenuHideDuration = 0.3f;
 	private const float GameResultShowDuration = 0.3f;
 	private const float DropFlightDuration = 0.8f;
+	private const float ShakeDuration = 0.2f;
 
 	private const int PanelOffset = -60;
 	private const int GameResultOffset = 950;
@@ -21,8 +22,20 @@ public class TweenController : MonoBehaviour
 	private Vector3 _panelDefaultPosition;
 	private Vector3 _gameResultDefaultPosition;
 
+	private Sequence _moveEggSequence;
+	private Sequence _increaseScoreSequence;
+	private Sequence _moveSuperEggSequence;
+	private Sequence _moveShitSequence;
+	private Sequence _moveExtraLifeSequence;
+
 	private void Start()
 	{
+		_moveEggSequence = DOTween.Sequence();
+		_increaseScoreSequence = DOTween.Sequence();
+		_moveSuperEggSequence = DOTween.Sequence();
+		_moveShitSequence = DOTween.Sequence();
+		_moveExtraLifeSequence = DOTween.Sequence();
+
 		_panelDefaultPosition = panel.position;
 		_gameResultDefaultPosition = gameResult.position;
 		gameController.OnGameStateChanged += OnGameStateChanged;
@@ -68,35 +81,50 @@ public class TweenController : MonoBehaviour
 		}
 	}
 
+
 	private void MoveEgg(Transform drop)
 	{
-		var seq = DOTween.Sequence();
 		var uiPosition = Camera.main.ScreenToWorldPoint(infoPanelView.GetEggsTransform.position);
 
-		seq.Append(drop.DOMove(uiPosition, DropFlightDuration));
-		seq.AppendCallback(() => Destroy(drop.gameObject));
-		seq.Append(infoPanelView.GetEggsTransform.DOShakeRotation(0.2f));
-		seq.AppendCallback(() =>infoPanelView.RefreshEggs());
-		seq.Append(infoPanelView.GetScoreTransform.DOPunchScale(Vector3.one, 0.2f));
-		seq.AppendCallback(() => infoPanelView.SetScore());
+		if (_moveEggSequence.IsPlaying())
+			_moveEggSequence.Kill(true);
+
+		_moveEggSequence = DOTween.Sequence();
+		_moveEggSequence.Append(drop.DOMove(uiPosition, DropFlightDuration));
+		_moveEggSequence.AppendCallback(() => Destroy(drop.gameObject));
+		_moveEggSequence.Append(infoPanelView.GetEggsTransform.DOShakeRotation(ShakeDuration));
+		_moveEggSequence.AppendCallback(() => infoPanelView.RefreshEggs());
+		_moveEggSequence.AppendCallback(IncreaseScore);
 	}
+
 
 	private void MoveSuperEgg(Transform drop)
 	{
-		var seq = DOTween.Sequence();
 		var uiPosition = Camera.main.ScreenToWorldPoint(infoPanelView.GetSuperEggTransform.position);
 
-		seq.Append(drop.DOMove(uiPosition, DropFlightDuration));
-		seq.AppendCallback(() => Destroy(drop.gameObject));
-		seq.Append(infoPanelView.GetSuperEggTransform.DOShakeRotation(0.2f));
-		seq.AppendCallback(() => infoPanelView.RefreshSuperEggs());
-		seq.Append(infoPanelView.GetScoreTransform.DOPunchScale(Vector3.one, 0.2f));
-		seq.AppendCallback(() => infoPanelView.SetScore());
+		if (_moveSuperEggSequence.IsPlaying())
+			_moveSuperEggSequence.Kill(true);
+		
+		_moveSuperEggSequence = DOTween.Sequence();
+		_moveSuperEggSequence.Append(drop.DOMove(uiPosition, DropFlightDuration));
+		_moveSuperEggSequence.AppendCallback(() => Destroy(drop.gameObject));
+		_moveSuperEggSequence.Append(infoPanelView.GetSuperEggTransform.DOShakeRotation(ShakeDuration));
+		_moveSuperEggSequence.AppendCallback(() => infoPanelView.RefreshSuperEggs());
+		_moveSuperEggSequence.AppendCallback(IncreaseScore);
+	}
+
+	private void IncreaseScore()
+	{
+		if (_increaseScoreSequence.IsPlaying())
+			_increaseScoreSequence.Kill(true);
+
+		_increaseScoreSequence = DOTween.Sequence();
+		_increaseScoreSequence.Append(infoPanelView.GetScoreTransform.DOPunchScale(Vector3.one, ShakeDuration));
+		_increaseScoreSequence.AppendCallback(() => infoPanelView.SetScore());
 	}
 
 	private void MoveShit(Transform drop)
 	{
-		var seq = DOTween.Sequence();
 		var uiTransform = infoPanelView.GetLiveToDestroy;
 		if (uiTransform == null)
 		{
@@ -105,16 +133,20 @@ public class TweenController : MonoBehaviour
 		}
 
 		var uiPosition = Camera.main.ScreenToWorldPoint(uiTransform.position);
-
-		seq.Append(drop.DOMove(uiPosition, DropFlightDuration));
-		seq.AppendCallback(() => Destroy(drop.gameObject));
-		seq.Append(uiTransform.DOPunchScale(Vector3.one, 0.2f));
-		seq.AppendCallback(() => infoPanelView.RefreshLives());
+		
+		if (_moveShitSequence.IsPlaying())
+			_moveShitSequence.Kill(true);
+		
+		_moveShitSequence = DOTween.Sequence();
+		_moveShitSequence.Append(drop.DOMove(uiPosition, DropFlightDuration));
+		_moveShitSequence.AppendCallback(() => Destroy(drop.gameObject));
+		_moveShitSequence.Append(uiTransform.DOPunchScale(Vector3.one, ShakeDuration));
+		_moveShitSequence.AppendCallback(() => infoPanelView.RefreshLives());
 	}
+
 
 	private void MoveExtraLive(Transform drop)
 	{
-		var seq = DOTween.Sequence();
 		var uiTransform = infoPanelView.GetLiveToRestore;
 		if (uiTransform == null)
 		{
@@ -124,10 +156,14 @@ public class TweenController : MonoBehaviour
 
 		var uiPosition = Camera.main.ScreenToWorldPoint(uiTransform.position);
 
-		seq.Append(drop.DOMove(uiPosition, DropFlightDuration));
-		seq.AppendCallback(() => Destroy(drop.gameObject));
-		seq.Append(uiTransform.DOPunchScale(Vector3.one, 0.2f));
-		seq.AppendCallback(() => infoPanelView.RefreshLives());
+		if(_moveExtraLifeSequence.IsPlaying())
+			_moveExtraLifeSequence.Kill(true);
+
+		_moveExtraLifeSequence = DOTween.Sequence();
+		_moveExtraLifeSequence.Append(drop.DOMove(uiPosition, DropFlightDuration));
+		_moveExtraLifeSequence.AppendCallback(() => Destroy(drop.gameObject));
+		_moveExtraLifeSequence.Append(uiTransform.DOPunchScale(Vector3.one, ShakeDuration));
+		_moveExtraLifeSequence.AppendCallback(() => infoPanelView.RefreshLives());
 	}
 
 	private void ShowMenu()
