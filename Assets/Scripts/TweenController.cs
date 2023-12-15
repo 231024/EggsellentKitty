@@ -62,21 +62,21 @@ public class TweenController : MonoBehaviour
 		}
 	}
 
-	private void OnKittyCollected(DropType dropType, GameObject drop)
+	private void OnKittyCollected(DropItem item)
 	{
-		switch (dropType)
+		switch (item.Type)
 		{
 			case DropType.Egg:
-				MoveEgg(drop.transform);
+				MoveEgg(item.transform);
 				break;
 			case DropType.SuperEgg:
-				MoveSuperEgg(drop.transform);
+				MoveSuperEgg(item.transform);
 				break;
 			case DropType.Shit:
-				MoveShit(drop.transform);
+				MoveShit(item.transform);
 				break;
 			case DropType.ExtraLife:
-				MoveExtraLive(drop.transform);
+				MoveExtraLive(item.transform);
 				break;
 		}
 	}

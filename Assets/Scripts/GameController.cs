@@ -64,12 +64,12 @@ public class GameController : MonoBehaviour
 
 	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;
 
-	private void OnDropCollected(DropType dropType, GameObject collected)
+	private void OnDropCollected(DropItem item)
 	{
 		if (!InProgress)
 			return;
 
-		switch (dropType)
+		switch (item.Type)
 		{
 			case DropType.Egg:
 				CollectEgg();

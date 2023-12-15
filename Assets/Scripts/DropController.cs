@@ -45,8 +45,9 @@ public class DropController : MonoBehaviour
 		if (drop != null)
 		{
 			var dropItem = Instantiate(drop).GetComponent<DropItem>();
-			dropItem.transform.position = _dropSources[_sourceIndex].transform.position;
-			dropItem.Init(dropType, GetDropLifetime(dropType));
+			var source = _dropSources[_sourceIndex];
+			dropItem.transform.position = source.transform.position;
+			dropItem.Init(dropType, source.name, GetDropLifetime(dropType));
 		}
 
 		ScheduleDrop();

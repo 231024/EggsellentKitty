@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-	public DropType Type {get; private set; }
 	private float _timeToDestroy;
 	private Rigidbody2D _rigidbody;
 	private Collider2D _collider;
@@ -14,10 +12,13 @@ public class DropItem : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody2D>();
 	}
 
+	public DropType Type { get; private set; }
+	public string Source { get; private set; }
+
 	private void OnDisable() => CancelInvoke();
 
-	public void Init(DropType dropType, float timeToDestroy) =>
-		(Type, _timeToDestroy) = (dropType, timeToDestroy);
+	public void Init(DropType dropType, string source, float timeToDestroy) =>
+		(Type, Source, _timeToDestroy) = (dropType, source, timeToDestroy);
 
 	public void Collect()
 	{

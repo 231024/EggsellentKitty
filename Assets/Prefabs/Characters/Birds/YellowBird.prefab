@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 181536, guid: dc3ba7ed85285e84aa542b45dda7ccbb, type: 3}
       propertyPath: m_Name
-      value: YellowBirdBase
+      value: YellowBird
       objectReference: {fileID: 0}
     - target: {fileID: 433560, guid: dc3ba7ed85285e84aa542b45dda7ccbb, type: 3}
       propertyPath: m_LocalScale.x
@@ -66,6 +66,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 433560, guid: dc3ba7ed85285e84aa542b45dda7ccbb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3095826990194738618}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3ba7ed85285e84aa542b45dda7ccbb, type: 3}
+--- !u!4 &1692690739171612100 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 433560, guid: dc3ba7ed85285e84aa542b45dda7ccbb, type: 3}
+  m_PrefabInstance: {fileID: 1692690739171706972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3704693002402121066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1692690739171612100}
+    m_Modifications:
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308407769674486856, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+      propertyPath: m_Name
+      value: BirdEmotions
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+--- !u!4 &3095826990194738618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1846230203254309072, guid: 9f06f133634ba4dedad884d4666d4838, type: 3}
+  m_PrefabInstance: {fileID: 3704693002402121066}
+  m_PrefabAsset: {fileID: 0}

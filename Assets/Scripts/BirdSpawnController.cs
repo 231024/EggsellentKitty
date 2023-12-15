@@ -8,6 +8,7 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	[SerializeField] private GameObject[] spawnPoints;
 	[SerializeField] protected GameConfig config;
 	[SerializeField] protected DropController dropController;
+	[SerializeField] protected EmotionsController emotionsController;
 	[SerializeField] private GameController gameController;
 
 	protected abstract int BirdsCount { get; }
@@ -58,5 +59,6 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	protected virtual void InitBird(T bird, GameObject spawnPoint)
 	{
 		dropController.Register(bird.gameObject);
+		emotionsController.RegisterBird(bird.gameObject);
 	}
 }
