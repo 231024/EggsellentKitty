@@ -8,6 +8,7 @@ public class MenuPanel : MonoBehaviour
 	[SerializeField] private TMP_Text eggRule;
 	[SerializeField] private TMP_Text superEggRule;
 	[SerializeField] private TMP_Text scoreToWin;
+	[SerializeField] private WeatherController weatherController;
 
 	private const string EggRuleText = "+{0} point to your score";
 	private const string ScoreToWinRuleText = "collect {0} points to win";
@@ -25,4 +26,6 @@ public class MenuPanel : MonoBehaviour
 	}
 
 	public void StartGame() => gameController.StartGame();
+
+	public void LetItSnow() => weatherController.ChangeWeather();
 }
