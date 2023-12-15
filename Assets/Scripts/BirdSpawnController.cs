@@ -41,6 +41,7 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 		{
 			var spawnPoint = spawnPoints[i % spawnPointsCount];
 			var bird = SpawnRandomBird(spawnPoint.transform.position);
+			bird.name += i;
 			var birdBehaviour = bird.GetComponent<T>();
 			InitBird(birdBehaviour, spawnPoint);
 		}
