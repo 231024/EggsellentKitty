@@ -4,6 +4,7 @@ using UnityEngine;
 public class EmotionsController : MonoBehaviour
 {
 	[SerializeField] private KittyPhysicsController kittyController;
+	[SerializeField] private GameController gameController;
 
 	private EmotionViewController _kitty;
 	private readonly Dictionary<string, EmotionViewController> _birds = new();
@@ -12,9 +13,20 @@ public class EmotionsController : MonoBehaviour
 	{
 		_kitty = kittyController.gameObject.GetComponentInChildren<EmotionViewController>();
 		kittyController.OnCollect += OnCollect;
+		gameController.OnGameStateChanged += OnGameStateChanged;
 	}
 
-	private void OnDestroy() => kittyController.OnCollect -= OnCollect;
+	private void OnDestroy()
+	{
+		kittyController.OnCollect -= OnCollect;
+		gameController.OnGameStateChanged -= OnGameStateChanged;
+	}
+
+	private void OnGameStateChanged()
+	{
+		if (gameController.NotStarted)
+			_birds.Clear();
+	}
 
 	public void RegisterBird(GameObject character)
 	{

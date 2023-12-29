@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +24,16 @@ public class InfoPanel : MonoBehaviour
 			_lives.Add(life);
 		}
 
+		gameController.OnGameStateChanged += OnGameStateChange;
 		RefreshStats();
+	}
+
+	private void OnDestroy() => gameController.OnGameStateChanged -= OnGameStateChange;
+
+	private void OnGameStateChange()
+	{
+		RefreshStats();
+		RefreshLives();
 	}
 
 	public Transform GetEggsTransform => eggs.transform;

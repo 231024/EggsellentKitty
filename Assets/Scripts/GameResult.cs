@@ -21,4 +21,6 @@ public class GameResult : MonoBehaviour
 		winPanel.SetActive(gameController.Result.Value);
 		loosePanel.SetActive(!gameController.Result.Value);
 	}
+
+	public void OnRetryClick() => gameController.RestartGame();
 }

@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
 
 	public bool? Result { get; private set; }
 	public bool InProgress => GameState == State.InProgress;
+	public bool NotStarted => GameState == State.NotStarted;
 
 	public event Action OnGameStateChanged;
 	public event Action OnKittyStateChanged;
@@ -52,15 +53,26 @@ public class GameController : MonoBehaviour
 
 	private void Awake()
 	{
-		CurrentLives = config.livesCount;
-		Score = 0;
-		TotalEggs = 0;
-		TotalSuperEggs = 0;
-
+		Init();
 		kitty.OnCollect += OnDropCollected;
 	}
 
 	public void StartGame() => GameState = State.InProgress;
+
+	public void RestartGame()
+	{
+		Init();
+		Result = null;
+		GameState = State.NotStarted;
+	}
+
+	private void Init()
+	{
+		CurrentLives = config.livesCount;
+		Score = 0;
+		TotalEggs = 0;
+		TotalSuperEggs = 0;
+	}
 
 	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;
 

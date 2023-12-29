@@ -263,6 +263,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7957700656600186899, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
   m_PrefabInstance: {fileID: 6334967345665163220}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &312891070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2617542853580219839, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+  m_PrefabInstance: {fileID: 6334967345665163220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f27ec5774f4c948ade00acfcd83f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &380790839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kittyController: {fileID: 1241311602}
+  gameController: {fileID: 1153666313}
 --- !u!4 &1294745706
 Transform:
   m_ObjectHideFlags: 0
@@ -4138,6 +4150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 9137a136d6ee03f44b7fdb622ea403e8, type: 3}
     - target: {fileID: 2617542853580219839, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1153666313}
+    - target: {fileID: 2617542853580219839, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
       propertyPath: musicController
       value: 
       objectReference: {fileID: 503117887}
@@ -4152,6 +4168,38 @@ PrefabInstance:
     - target: {fileID: 3197090280886612857, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 312891070}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRestartClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnHideClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SettingsPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810251238890100558, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7957700656600186899, guid: ded6c01d63e6d43b4b0b7ce17545e1dc, type: 3}
       propertyPath: m_Pivot.x
@@ -4383,14 +4431,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1924373354}
     m_Modifications:
-    - target: {fileID: 370660128891635201, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
-      propertyPath: m_Color.a
-      value: 0.98039216
-      objectReference: {fileID: 0}
-    - target: {fileID: 629973957099621036, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
-      propertyPath: m_Color.a
-      value: 0.98039216
-      objectReference: {fileID: 0}
     - target: {fileID: 1494817075626892201, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4475,15 +4515,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameResult
       objectReference: {fileID: 0}
-    - target: {fileID: 4316576932221333208, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6663414700214836127, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505810995184980642, guid: ace5e012609064d5ab754dc277a5fc70, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,7 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	[SerializeField] private GameController gameController;
 
 	protected abstract int BirdsCount { get; }
+	private List<GameObject> _spawnedBirds = new();
 	private int _maxIndex;
 
 	private void Start()
@@ -29,6 +31,8 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	{
 		if (gameController.InProgress)
 			SpawnBirds();
+		else if (gameController.NotStarted)
+			DestroyBirds();
 	}
 
 	private void SpawnBirds()
@@ -42,6 +46,7 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 			var spawnPoint = spawnPoints[i % spawnPointsCount];
 			var bird = SpawnRandomBird(spawnPoint.transform.position);
 			bird.name += i;
+			_spawnedBirds.Add(bird);
 			var birdBehaviour = bird.GetComponent<T>();
 			InitBird(birdBehaviour, spawnPoint);
 		}
@@ -61,5 +66,13 @@ public abstract class BirdSpawnBaseController<T> : MonoBehaviour where T : BirdB
 	{
 		dropController.Register(bird.gameObject);
 		emotionsController.RegisterBird(bird.gameObject);
+	}
+
+	private void DestroyBirds()
+	{
+		foreach (var bird in _spawnedBirds)
+			Destroy(bird);
+
+		_spawnedBirds.Clear();
 	}
 }

@@ -63,6 +63,9 @@ public class TweenController : MonoBehaviour
 			case GameController.State.Finished:
 				ShowGameResult();
 				break;
+			case GameController.State.NotStarted:
+				RestartGame();
+				break;
 		}
 	}
 
@@ -172,17 +175,29 @@ public class TweenController : MonoBehaviour
 	private void ShowMenu()
 	{
 		var seq = DOTween.Sequence();
+
 		seq.Append(menu.DOFade(1f, MenuShowDuration));
+		seq.AppendCallback(() => menu.blocksRaycasts = true);
+		
+		if (panel.gameObject.activeSelf)
+		{
+			seq.Join(panel.DOMove(
+				new Vector3(_panelDefaultPosition.x, _panelDefaultPosition.y - PanelOffset, _panelDefaultPosition.z),
+				MenuShowDuration));
+			seq.AppendCallback(() => panel.gameObject.SetActive(false));
+		}
 	}
 
 	private void HideMenu()
 	{
 		var seq = DOTween.Sequence();
 		seq.Append(menu.DOFade(0f, MenuHideDuration));
+
 		seq.AppendCallback(() => panel.gameObject.SetActive(true));
 		seq.Append(panel.DOMove(
 			new Vector3(_panelDefaultPosition.x, _panelDefaultPosition.y + PanelOffset, _panelDefaultPosition.z),
 			MenuShowDuration));
+
 		seq.AppendCallback(() => menu.blocksRaycasts = false);
 	}
 
@@ -212,9 +227,31 @@ public class TweenController : MonoBehaviour
 	{
 		var seq = DOTween.Sequence();
 		seq.SetEase(Ease.InOutBack);
+		seq.AppendCallback(() => gameResult.gameObject.SetActive(true));
 		seq.Append(gameResult.DOMove(
 			new Vector3(_gameResultDefaultPosition.x - GameResultOffset, _gameResultDefaultPosition.y,
 				_gameResultDefaultPosition.z),
 			GameResultShowDuration));
+	}
+	
+	private void HideGameResult()
+	{
+		if (!gameResult.gameObject.activeSelf)
+			return;
+
+		var seq = DOTween.Sequence();
+		seq.SetEase(Ease.InOutBack);
+		seq.Append(gameResult.DOMove(
+			new Vector3(_gameResultDefaultPosition.x + GameResultOffset, _gameResultDefaultPosition.y,
+				_gameResultDefaultPosition.z),
+			GameResultShowDuration));
+		seq.AppendCallback(() => gameResult.gameObject.SetActive(false));
+	}
+
+	private void RestartGame()
+	{
+		var seq = DOTween.Sequence();
+		seq.AppendCallback(HideGameResult);
+		seq.AppendCallback(ShowMenu);
 	}
 }

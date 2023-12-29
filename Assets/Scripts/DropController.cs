@@ -9,21 +9,36 @@ public class DropController : MonoBehaviour
 	[SerializeField] private DropItemConfig dropItems;
 
 	private readonly List<GameObject> _dropSources = new();
+	private readonly List<GameObject> _droppedItems = new();
 	private int _sourceIndex;
 
 	private void Awake()
 	{
-		gameController.OnGameStateChanged += ScheduleDrop;
+		gameController.OnGameStateChanged += OnGameStateChanged;
 		ScheduleDrop();
 	}
 
 	private void OnDestroy()
 	{
 		CancelInvoke();
-		gameController.OnGameStateChanged -= ScheduleDrop;
+		gameController.OnGameStateChanged -= OnGameStateChanged;
 	}
 
 	public void Register(GameObject dropSource) => _dropSources.Add(dropSource);
+
+	private void OnGameStateChanged()
+	{
+		if (gameController.InProgress)
+			ScheduleDrop();
+		else if (gameController.NotStarted)
+		{
+			CancelInvoke();
+			_dropSources.Clear();
+
+			foreach (var item in _droppedItems)
+				Destroy(item);
+		}
+	}
 
 	private void ScheduleDrop()
 	{
@@ -48,6 +63,7 @@ public class DropController : MonoBehaviour
 			var source = _dropSources[_sourceIndex];
 			dropItem.transform.position = source.transform.position;
 			dropItem.Init(dropType, source.name, GetDropLifetime(dropType));
+			_droppedItems.Add(dropItem.gameObject);
 		}
 
 		ScheduleDrop();
