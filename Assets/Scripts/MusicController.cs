@@ -1,32 +1,55 @@
-using System;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
 	[SerializeField] private AudioSource musicSource;
-	[SerializeField] private AudioSource[] snowSources;
+	[SerializeField] private AudioSource snowSource;
+	[SerializeField] private AudioSource[] emotionSources;
 
+	private const string MusicIsOnKey = "music/is-on";
 	private const string SoundIsOnKey = "sound/is-on";
 
-	public void Awake() => SwitchAll();
-
-	public void Switch()
+	public void Awake()
 	{
-		IsOn = !IsOn;
-		SwitchAll();
+		SwitchAllMusicSources();
+		SwitchAllSoundSources();
 	}
 
-	private void SwitchAll()
+	public void SwitchMusic()
 	{
-		musicSource.mute = !IsOn;
+		MusicIsOn = !MusicIsOn;
+		SwitchAllMusicSources();
+	}
+	
+	public void SwitchSound()
+	{
+		SoundIsOn = !SoundIsOn;
+		SwitchAllSoundSources();
+	}
 
-		foreach (var snowSource in snowSources)
+	private void SwitchAllMusicSources()
+	{
+		musicSource.mute = !MusicIsOn;
+		snowSource.mute = !MusicIsOn;
+	}
+
+	private void SwitchAllSoundSources()
+	{
+		foreach (var source in emotionSources)
+			source.mute = !SoundIsOn;
+	}
+
+	public bool MusicIsOn
+	{
+		get => PlayerPrefs.GetInt(MusicIsOnKey, 1) == 1;
+		set
 		{
-			snowSource.mute = !IsOn;
+			PlayerPrefs.SetInt(MusicIsOnKey, value ? 1 : 0);
+			PlayerPrefs.Save();
 		}
 	}
 
-	public bool IsOn
+	public bool SoundIsOn
 	{
 		get => PlayerPrefs.GetInt(SoundIsOnKey, 1) == 1;
 		set

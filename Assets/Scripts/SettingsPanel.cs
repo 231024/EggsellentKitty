@@ -7,11 +7,14 @@ public class SettingsPanel : MonoBehaviour
 	[SerializeField] private WeatherController weatherController;
 	[SerializeField] private MusicController musicController;
 	[SerializeField] private GameController gameController;
-	[SerializeField] private Image soundIcon;
-	[SerializeField] private Sprite soundIsOn;
-	[SerializeField] private Sprite soundIsOff;
+	[SerializeField] private SwitchButton soundButton;
+	[SerializeField] private SwitchButton musicButton;
 
-	private void Awake() => SetupSoundIcon();
+	private void Awake()
+	{
+		SetupSoundButton();
+		SetupMusicButton();
+	}
 
 	public void OnHideClick() => tweenController.HideSettings();
 
@@ -19,11 +22,18 @@ public class SettingsPanel : MonoBehaviour
 
 	public void OnSoundClick()
 	{
-		musicController.Switch();
-		SetupSoundIcon();
+		musicController.SwitchSound();
+		SetupSoundButton();
 	}
 
-	public void OnRestartClick() => gameController.RestartGame();
+	public void OnMusicClick()
+	{
+		musicController.SwitchMusic();
+		SetupMusicButton();
+	}
 
-	private void SetupSoundIcon() => soundIcon.overrideSprite = musicController.IsOn ? soundIsOn : soundIsOff;
+	private void SetupSoundButton() => soundButton.Setup(musicController.SoundIsOn);
+	private void SetupMusicButton() => musicButton.Setup(musicController.MusicIsOn);
+
+	public void OnRestartClick() => gameController.RestartGame();
 }
