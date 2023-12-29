@@ -4,6 +4,7 @@ using UnityEngine;
 public class InfoPanel : MonoBehaviour
 {
 	[SerializeField] private GameController gameController;
+	[SerializeField] private TweenController tweenController;
 	[SerializeField] private GameConfig config;
 	[SerializeField] private Transform livesContainer;
 	[SerializeField] private GameObject lifePrefab;
@@ -57,4 +58,6 @@ public class InfoPanel : MonoBehaviour
 		for (int i = 0, length = _lives.Count; i < length; i++)
 			_lives[i].SetState(i < current);
 	}
+
+	public void OnSettingsClick() => tweenController.ShowSettings();
 }

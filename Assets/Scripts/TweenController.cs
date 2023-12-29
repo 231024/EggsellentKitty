@@ -9,6 +9,7 @@ public class TweenController : MonoBehaviour
 	[SerializeField] private InfoPanel infoPanelView;
 	[SerializeField] private Transform panel;
 	[SerializeField] private Transform gameResult;
+	[SerializeField] private Transform settings;
 
 	private const float MenuShowDuration = 1f;
 	private const float MenuHideDuration = 0.3f;
@@ -17,10 +18,12 @@ public class TweenController : MonoBehaviour
 	private const float ShakeDuration = 0.2f;
 
 	private const int PanelOffset = -60;
+	private const int SettingsOffset = -400;
 	private const int GameResultOffset = 950;
 
 	private Vector3 _panelDefaultPosition;
 	private Vector3 _gameResultDefaultPosition;
+	private Vector3 _settingsDefaultPosition;
 
 	private Sequence _moveEggSequence;
 	private Sequence _increaseScoreSequence;
@@ -38,6 +41,7 @@ public class TweenController : MonoBehaviour
 
 		_panelDefaultPosition = panel.position;
 		_gameResultDefaultPosition = gameResult.position;
+		_settingsDefaultPosition = settings.position;
 		gameController.OnGameStateChanged += OnGameStateChanged;
 		kittyController.OnCollect += OnKittyCollected;
 		ShowMenu();
@@ -144,7 +148,6 @@ public class TweenController : MonoBehaviour
 		_moveShitSequence.AppendCallback(() => infoPanelView.RefreshLives());
 	}
 
-
 	private void MoveExtraLive(Transform drop)
 	{
 		var uiTransform = infoPanelView.GetLiveToRestore;
@@ -176,9 +179,33 @@ public class TweenController : MonoBehaviour
 	{
 		var seq = DOTween.Sequence();
 		seq.Append(menu.DOFade(0f, MenuHideDuration));
+		seq.AppendCallback(() => panel.gameObject.SetActive(true));
 		seq.Append(panel.DOMove(
 			new Vector3(_panelDefaultPosition.x, _panelDefaultPosition.y + PanelOffset, _panelDefaultPosition.z),
 			MenuShowDuration));
+		seq.AppendCallback(() => menu.blocksRaycasts = false);
+	}
+
+	public void ShowSettings()
+	{
+		if (settings.gameObject.activeSelf)
+			return;
+
+		var seq = DOTween.Sequence();
+		seq.AppendCallback(() => settings.gameObject.SetActive(true));
+		seq.Append(settings.DOMove(new Vector3(_settingsDefaultPosition.x, _settingsDefaultPosition.y + SettingsOffset,
+			_settingsDefaultPosition.z), MenuShowDuration));
+	}
+
+	public void HideSettings()
+	{
+		if (!settings.gameObject.activeSelf)
+			return;
+		
+		var seq = DOTween.Sequence();
+		seq.Append(settings.DOMove(new Vector3(_settingsDefaultPosition.x, _settingsDefaultPosition.y - SettingsOffset,
+			_settingsDefaultPosition.z), MenuShowDuration));
+		seq.AppendCallback(() => settings.gameObject.SetActive(false));
 	}
 
 	private void ShowGameResult()
