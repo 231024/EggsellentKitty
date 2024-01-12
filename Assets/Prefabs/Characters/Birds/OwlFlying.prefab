@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OwlFlying
       objectReference: {fileID: 0}
+    - target: {fileID: 6252860086328067530, guid: c543bb1c7f29b42ca9e31e371d89b644, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -112,7 +116,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

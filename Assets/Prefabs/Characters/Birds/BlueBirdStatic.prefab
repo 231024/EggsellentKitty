@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueBirdStatic
       objectReference: {fileID: 0}
+    - target: {fileID: 5134319201382581188, guid: 883b1a627062f4686bbc22212a091628, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5134319201382869294, guid: 883b1a627062f4686bbc22212a091628, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

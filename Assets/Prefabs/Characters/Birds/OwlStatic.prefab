@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OwlStatic
       objectReference: {fileID: 0}
+    - target: {fileID: 6252860086328067530, guid: c543bb1c7f29b42ca9e31e371d89b644, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
