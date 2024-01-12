@@ -8,6 +8,7 @@ public class GameConfig : ScriptableObject
 {
 	[Header("Kitty Config")]
 	public float kittySpeed;
+	public float kittyJumpHeight;
 
 	[Header("Birds Config")]
 	public int staticBirdsCount;
