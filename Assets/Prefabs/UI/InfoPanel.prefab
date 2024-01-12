@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  tweenController: {fileID: 0}
   config: {fileID: 11400000, guid: 22ef88765423a4c11a41019d6ff7c760, type: 2}
   livesContainer: {fileID: 4312629251909191822}
   lifePrefab: {fileID: 3990853240827448487, guid: 5e289c5c858894c208a9fdf2f3997771, type: 3}
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ef58f43d19b42e28a3814abf3fe8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 8774738836164960812}
 --- !u!1 &3225329011713100938
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ef58f43d19b42e28a3814abf3fe8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 8495771232884596445}
 --- !u!1 &6228193728203813499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,3 +1105,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ef58f43d19b42e28a3814abf3fe8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1672107212301085364}
