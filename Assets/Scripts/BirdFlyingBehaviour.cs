@@ -38,6 +38,10 @@ public class BirdFlyingBehaviour : BirdBaseBehaviour
 		if (!_isFlying)
 			return;
 
-		_transform.position += new Vector3(_flightSpeed * _direction, 0);
+		var position = _transform.position;
+		position.y += Mathf.Sin(Time.time) * Time.deltaTime;
+		position.x += _flightSpeed * _direction;
+
+		_transform.position = position ;
 	}
 }
