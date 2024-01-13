@@ -5,6 +5,7 @@ public class Attacker : MonoBehaviour
 	[SerializeField] private GameConfig config;
 	[SerializeField] private Rigidbody2D body;
 	[SerializeField] private KittyInputController input;
+	[SerializeField] private Animation hit;
 
 	private void Awake() => input.Attack += OnAttack;
 
@@ -15,7 +16,8 @@ public class Attacker : MonoBehaviour
 	{
 		if (other.gameObject.GetComponent<BirdFlyingBehaviour>())
 		{
-			Debug.Log("Hit bird");
+			Debug.LogError("Hit bird");
+			hit.Play();
 		}
 	}
 

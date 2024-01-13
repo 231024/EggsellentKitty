@@ -85,9 +85,11 @@ public class TweenController : MonoBehaviour
 			case DropType.ExtraLife:
 				MoveExtraLive(item.transform);
 				break;
+			case DropType.Attack:
+				MoveAttack(item.transform);
+				break;
 		}
 	}
-
 
 	private void MoveEgg(Transform drop)
 	{
@@ -170,6 +172,11 @@ public class TweenController : MonoBehaviour
 		_moveExtraLifeSequence.AppendCallback(() => Destroy(drop.gameObject));
 		_moveExtraLifeSequence.Append(uiTransform.DOPunchScale(Vector3.one, ShakeDuration));
 		_moveExtraLifeSequence.AppendCallback(() => infoPanelView.RefreshLives());
+	}
+
+	private void MoveAttack(Transform drop)
+	{
+		Destroy(drop.gameObject);
 	}
 
 	private void ShowMenu()

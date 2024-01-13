@@ -35,5 +35,7 @@ MonoBehaviour:
     Probability: 50
   - Type: 1
     Probability: 80
+  - Type: 5
+    Probability: 50
   scoreToWin: 50
   livesCount: 3

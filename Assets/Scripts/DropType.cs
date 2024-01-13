@@ -4,5 +4,6 @@ public enum DropType
 	Egg = 1,
 	SuperEgg = 2,
 	Shit = 3,
-	ExtraLife = 4
+	ExtraLife = 4,
+	Attack = 5
 }

@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
 
 	public int TotalEggs { get; private set; }
 	public int TotalSuperEggs { get; private set; }
+	public bool HasAttack { get; private set; }
 
 	public bool? Result { get; private set; }
 	public bool InProgress => GameState == State.InProgress;
@@ -95,6 +96,9 @@ public class GameController : MonoBehaviour
 			case DropType.ExtraLife:
 				CollectExtraLife();
 				break;
+			case DropType.Attack:
+				CollectAttack();
+				break;
 			default: return;
 		}
 
@@ -132,6 +136,14 @@ public class GameController : MonoBehaviour
 			return;
 
 		CurrentLives++;
+	}
+	
+	private void CollectAttack()
+	{
+		if (HasAttack)
+			return;
+
+		HasAttack = true;
 	}
 
 	private void CheckScore()
