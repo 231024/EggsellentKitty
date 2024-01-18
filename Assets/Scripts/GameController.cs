@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour
 
 	[SerializeField] private GameConfig config;
 	[SerializeField] private KittyPhysicsController kitty;
+	[SerializeField] private Attacker attacker;
 
 	public int CurrentLives { get; private set; }
 
@@ -56,6 +58,7 @@ public class GameController : MonoBehaviour
 	{
 		Init();
 		kitty.OnCollect += OnDropCollected;
+		attacker.OnFinishAttack += OnFinishAttack;
 	}
 
 	public void StartGame() => GameState = State.InProgress;
@@ -76,7 +79,11 @@ public class GameController : MonoBehaviour
 		HasAttack = false;
 	}
 
-	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;
+	private void OnDestroy()
+	{
+		kitty.OnCollect -= OnDropCollected;
+		attacker.OnFinishAttack -= OnFinishAttack;
+	}
 
 	private void OnDropCollected(DropItem item)
 	{
@@ -103,6 +110,12 @@ public class GameController : MonoBehaviour
 			default: return;
 		}
 
+		OnKittyStateChanged?.Invoke();
+	}
+
+	private void OnFinishAttack()
+	{
+		HasAttack = false;
 		OnKittyStateChanged?.Invoke();
 	}
 
@@ -139,13 +152,7 @@ public class GameController : MonoBehaviour
 		CurrentLives++;
 	}
 	
-	private void CollectAttack()
-	{
-		if (HasAttack)
-			return;
-
-		HasAttack = true;
-	}
+	private void CollectAttack() => HasAttack = true;
 
 	private void CheckScore()
 	{

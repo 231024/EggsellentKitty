@@ -15,7 +15,7 @@ public class KittyInputController : MonoBehaviour
 	{
 		HorizontalAxisValue = Input.GetAxis(HorizontalAxisName);
 
-		if (gameController.HasAttack && Input.GetKeyDown(KeyCode.E))
+		if (gameController.HasAttack && Input.GetKeyDown(KeyCode.Space))
 			Attack?.Invoke();
 	}
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,20 +9,25 @@ public class Attacker : MonoBehaviour
 	[SerializeField] private Animation hit;
 
 	public UnityAction OnHit;
-	private const string FloorTag = "Floor";
+	public UnityAction OnFinishAttack;
 	private bool _isInAttack;
+
+	private const string FloorTag = "Floor";
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag(FloorTag))
 		{
-			_isInAttack = false;
 			Debug.Log("finish attack");
+
+			_isInAttack = false;
+			OnFinishAttack?.Invoke();
 		}
 
 		if (_isInAttack && other.gameObject.GetComponent<BirdFlyingBehaviour>())
 		{
 			Debug.Log("Hit bird");
+
 			hit.Play();
 			OnHit?.Invoke();
 		}
@@ -34,6 +38,7 @@ public class Attacker : MonoBehaviour
 		if (other.CompareTag(FloorTag))
 		{
 			Debug.Log("start attack");
+
 			_isInAttack = true;
 		}
 	}

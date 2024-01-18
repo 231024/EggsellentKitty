@@ -58,7 +58,7 @@ public class InfoPanel : MonoBehaviour
 
 	public void RefreshEggs() => eggs.SetValue(gameController.TotalEggs);
 	public void RefreshSuperEggs() => superEggs.SetValue(gameController.TotalSuperEggs);
-	public void SetScore() => score.SetScore(gameController.Score);
+	public void SetScore() => score.SetScore(gameController.Score, config.scoreToWin);
 
 	public void RefreshLives()
 	{
