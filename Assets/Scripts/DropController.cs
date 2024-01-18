@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 public class DropController : MonoBehaviour
 {
 	[SerializeField] private GameController gameController;
+	[SerializeField] private Attacker attacker;
 	[SerializeField] private GameConfig config;
 	[SerializeField] private DropItemConfig dropItems;
 
@@ -12,9 +13,12 @@ public class DropController : MonoBehaviour
 	private readonly List<GameObject> _droppedItems = new();
 	private int _sourceIndex;
 
+	private const DropType ShockingDropType = DropType.SuperEgg;
+
 	private void Awake()
 	{
 		gameController.OnGameStateChanged += OnGameStateChanged;
+		attacker.OnHit += ShockingDrop;
 		ScheduleDrop();
 	}
 
@@ -22,6 +26,7 @@ public class DropController : MonoBehaviour
 	{
 		CancelInvoke();
 		gameController.OnGameStateChanged -= OnGameStateChanged;
+		attacker.OnHit -= ShockingDrop;
 	}
 
 	public void Register(GameObject dropSource) => _dropSources.Add(dropSource);
@@ -67,6 +72,19 @@ public class DropController : MonoBehaviour
 		}
 
 		ScheduleDrop();
+	}
+
+	private void ShockingDrop()
+	{
+		var drop = dropItems.GetDropByType(ShockingDropType);
+
+		foreach (var source in _dropSources)
+		{
+			var dropItem = Instantiate(drop).GetComponent<DropItem>();
+			dropItem.transform.position = source.transform.position;
+			dropItem.Init(ShockingDropType, source.name, GetDropLifetime(ShockingDropType));
+			_droppedItems.Add(dropItem.gameObject);
+		}
 	}
 
 	private float GetDropLifetime(DropType dropType) =>

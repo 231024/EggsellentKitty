@@ -5,6 +5,7 @@ public class EmotionsController : MonoBehaviour
 {
 	[SerializeField] private KittyPhysicsController kittyController;
 	[SerializeField] private GameController gameController;
+	[SerializeField] private Attacker attacker;
 
 	[SerializeField] private AudioSource kittyAudioSource;
 	[SerializeField] private AudioClip kittyHappy;
@@ -22,12 +23,14 @@ public class EmotionsController : MonoBehaviour
 		_kitty = kittyController.gameObject.GetComponentInChildren<EmotionViewController>();
 		kittyController.OnCollect += OnCollect;
 		gameController.OnGameStateChanged += OnGameStateChanged;
+		attacker.OnHit += OnHit;
 	}
 
 	private void OnDestroy()
 	{
 		kittyController.OnCollect -= OnCollect;
 		gameController.OnGameStateChanged -= OnGameStateChanged;
+		attacker.OnHit -= OnHit;
 	}
 
 	private void OnGameStateChanged()
@@ -57,6 +60,14 @@ public class EmotionsController : MonoBehaviour
 		{
 			bird.Play(birdEmotion);
 			PlaySound(birdAudioSource, GetBirdAudio(birdEmotion));
+		}
+	}
+
+	private void OnHit()
+	{
+		foreach (var bird in _birds)
+		{
+			bird.Value.PlayShock();
 		}
 	}
 

@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour
 		Score = 0;
 		TotalEggs = 0;
 		TotalSuperEggs = 0;
+		HasAttack = false;
 	}
 
 	private void OnDestroy() => kitty.OnCollect -= OnDropCollected;

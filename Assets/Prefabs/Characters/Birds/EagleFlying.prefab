@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 803610702789805009, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329371373952409059, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5307903972874536252, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53,6 +61,14 @@ PrefabInstance:
       value: EagleFlying
       objectReference: {fileID: 0}
     - target: {fileID: 5307903972874766012, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032397937438370139, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308703019619976234, guid: 1a25e38cf90a94d3e8ec8f5ad811182a, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
